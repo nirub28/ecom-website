@@ -1,0 +1,26 @@
+.form{
+  margin-left: 30%; 
+  margin-top: 70px;
+  background-color: white;
+  width: 500px;
+  padding-left: 50px;
+  height: 450px;
+
+}
+.name{
+    margin-left: 40%; 
+    margin-top: 200px;
+}
+.inputBox{
+  width: 450px;
+  height: 20px;
+}
+p{
+  font-weight: bold;
+}
+.add{
+  margin-left: 410px;
+  margin-top: 10px;
+  width: 50px;
+   height: 30px;
+}
