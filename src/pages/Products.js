@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { data } from "../data";
 import styles from "../styles/products.module.css";
 import { connect } from "react-redux";
 import { deleteProduct , updateProduct } from "../actions";
@@ -29,17 +28,17 @@ const Products = (props) => {
   };
 
   const handleDeleteProd = (product) => {
-    props.dispatch(deleteProduct(product));
+    props.deleteProduct(product);
   };
 
   const handleSaveChanges = () => {
-    // Find the index of the edited product in the myData array
+    // Find the index of the edited product in the products array
     const editedProductIndex = products.findIndex(
       (product) => product.Id === editedProduct.Id
     );
 
     if (editedProductIndex !== -1) {
-      // Create a copy of the myData array
+      // Create a copy of the products array
       const updatedData = [...products];
 
       // Update the edited product in the copy
@@ -208,5 +207,5 @@ const mapStateToProps = (state) => ({
 });
 
 // export default connect(mapStateToProps)(Products);
-export default connect(mapStateToProps, { updateProduct })(Products);
+export default connect(mapStateToProps, {deleteProduct , updateProduct })(Products);
 

@@ -31,6 +31,11 @@ export function products(state = initialProductStore, action) {
         ...state,
         cart: state.cart.filter((product) => product !== action.product),
       };
+    case DELETE_PRODUCT_FROM_LIST:
+      return {
+        ...state,
+        list: state.list.filter((product) => product !== action.product),
+      };
     case UPDATE_PRODUCT:
       const updatedProductIndex = state.list.findIndex(
         (product) => product.Id === action.product.Id
@@ -45,21 +50,11 @@ export function products(state = initialProductStore, action) {
         };
       }
       return state;
-    // case UPDATE_PRODUCT:
-
-    //   return {
-    //     ...state,
-
-    //   };
-    case ADD_PRODUCT_TO_LIST:
+    
+      case ADD_PRODUCT_TO_LIST:
       return {
         ...state,
         list: [action.product, ...state.list],
-      };
-    case DELETE_PRODUCT_FROM_LIST:
-      return {
-        ...state,
-        list: state.list.filter((product) => product !== action.product),
       };
 
     default:
