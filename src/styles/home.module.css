@@ -9,6 +9,17 @@
    margin-top:50px ;
    background-color: white;
 }
+
+/* .prodDiv {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 50px;
+    background-color: white;
+    position: relative;
+  } */
 .title{
 
 }
@@ -26,6 +37,7 @@
 }
 .info{
    margin-left: 100px;
+
 }
 .innDiv{
    display: flex;
@@ -72,18 +84,16 @@
  .price {
    font-weight: normal;
  }
-.editPic{
-   width: 20px;
-   height: 20px;
-   margin-left: 450px;
-}
-.delPic{
-   width: 20px;
-   height: 20px;
-   margin-left: 50px;
-}
-.delPic,
-.editPic,
-  hover{
-   cursor: pointer;
-}
+ .endDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+ }
+ .addToCart{
+    width: 100px;
+    height: 30px;
+    margin-left: 500px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+ }
