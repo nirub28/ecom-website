@@ -87,3 +87,34 @@
   hover{
    cursor: pointer;
 }
+
+.editPopup {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: red;
+   width: 400px;
+   height: 400px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .editPopup h2 {
+   margin-bottom: 20px;
+ }
+ 
+ .editPopup input,
+ .editPopup textarea {
+   margin-bottom: 10px;
+   padding: 5px;
+   width: 100%;
+ }
+ 
+ .editPopup button {
+   margin-top: 10px;
+   padding: 5px 10px;
+ }
+ 

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../styles/cart.module.css';
 import {removeFromCart} from '../actions';
+import { connect } from 'react-redux';
 
 
 const Cart = (props) => {
@@ -45,4 +46,11 @@ const Cart = (props) => {
 
 
 
-export default Cart;
+// export default Cart;
+
+const mapStateToProps = (state) => ({
+  cart: state.products.cart,
+});
+
+export default connect(mapStateToProps)(Cart);
+

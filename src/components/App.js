@@ -30,7 +30,7 @@ const App = ({ dispatch , products }) => {
 
   return (
     <div className="App">
-      <Navbar cart={cart} />
+      <Navbar  dispatch={dispatch} cart={cart} />
       <Routes>
         <Route
           exact

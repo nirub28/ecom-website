@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import styles from '../styles/navbar.module.css';
 
 const Navbar = (props) => {
@@ -21,4 +22,10 @@ const Navbar = (props) => {
     );
   }
   
-  export default Navbar;
+  // export default Navbar;
+  const mapStateToProps = (state) => ({
+    cart: state.products.cart,
+  });
+  
+  export default connect(mapStateToProps)(Navbar);
+  
