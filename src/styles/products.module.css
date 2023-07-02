@@ -117,4 +117,40 @@
    margin-top: 10px;
    padding: 5px 10px;
  }
- 
+.deletePopup{
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: black;
+   width:  300px;
+   height: 120px;
+   color: white;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center; 
+   /* border-radius: 40px; */
+}
+.actionDiv{
+   display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+}
+.actionDel{
+   margin-left: 20px;
+   background-color: red;
+   color: white;
+}
+.actionCancel{
+   background-color: gray;
+   color: white;
+
+}
+.actionDel:hover{
+  cursor: pointer;
+}
+.actionCancel:hover{
+   cursor: pointer;
+}
+

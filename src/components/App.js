@@ -35,7 +35,7 @@ const App = ({ dispatch , products }) => {
         <Route
           exact
           path="/"
-          element={<Home products={list} dispatch={dispatch} />}
+          element={<Home products={list} cart={cart} dispatch={dispatch} />}
         />
         <Route exact path="/products" element={<Products products={list} />} />
         <Route

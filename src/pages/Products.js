@@ -10,6 +10,7 @@ const Products = (props) => {
   const [isSortView, setisSortView] = useState(false);
   const [ isUpdate , setUpdate] = useState(false);
   const [editedProduct, setEditedProduct] = useState(null);
+  const [deleteProduct, setDeleteProduct] = useState(false);
 
   console.log("length of data is ", products.length);
 
@@ -27,9 +28,24 @@ const Products = (props) => {
     setUpdate(true);
   };
 
-  const handleDeleteProd = (product) => {
-    props.deleteProduct(product);
+
+
+  const cancelDelete = () =>{
+    setDeleteProduct(false);
+  }
+
+  const continueDelete = () => {
+    if (deleteProduct) {
+      props.deleteProduct(editedProduct);
+      setDeleteProduct(false);
+    }
   };
+
+  const handleDeleteProd = (product) => {
+    setEditedProduct(product);
+    setDeleteProduct(true);
+  };
+
 
   const handleSaveChanges = () => {
     // Find the index of the edited product in the products array
@@ -87,25 +103,49 @@ const Products = (props) => {
           ""
         )}
       </div>{" "}
+      {deleteProduct ? <div className={styles.deletePopup}> <h3>Delete Product?</h3>
+       <div className={styles.actionDiv}>
+        <button className={styles.actionCancel} onClick={() => cancelDelete()} type="submit">Cancel</button>
+        <button className={styles.actionDel} onClick={() => continueDelete()} type="submit">Delete</button>
+        </div>
+      </div> :''}
       {isSortView
         ? sortedData.map((product, index) => (
-            <div className={styles.prodDiv} key={index}>
+          <div className={styles.prodDiv} key={index}>
+          <img
+            className={styles.pic}
+            src={product.Img}
+            alt={product.Title}
+          />
+          <div className={styles.innDiv}>
+            <h2 className={styles.title}>{product.Title}</h2>
+            <p className={styles.price}>
+              <b>RS:</b> {product.Price}
+            </p>
+            <p className={styles.rating}>
+              <b>Rating:</b> {product.Rating}
+            </p>
+          </div>
+          <div className={styles.endDiv}>
+            <p className={styles.info}>{product.Info}</p>
+            <span>
               <img
-                className={styles.pic}
-                src={product.Img}
-                alt={product.Title}
+                className={styles.editPic}
+                src="https://cdn-icons-png.flaticon.com/512/505/505159.png"
+                alt="edit-icon"
+                onClick={() => handleEditProd(product)}
               />
-              <div className={styles.innDiv}>
-                <h2 className={styles.title}>{product.Title}</h2>
-                <p className={styles.price}>
-                  <b>RS:</b> {product.Price}
-                </p>
-                <p className={styles.rating}>
-                  <b>Rating:</b> {product.Rating}
-                </p>
-              </div>
-              <p className={styles.info}>{product.Info}</p>
-            </div>
+            </span>{" "}
+            <span>
+              <img
+                className={styles.delPic}
+                src="https://cdn-icons-png.flaticon.com/512/1632/1632602.png"
+                alt="delete-icon"
+                onClick={() => handleDeleteProd(product)}
+              />
+            </span>
+          </div>
+        </div>
           ))
         : products.map((product, index) => (
             <div className={styles.prodDiv} key={index}>
