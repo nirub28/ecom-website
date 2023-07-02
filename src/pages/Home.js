@@ -27,7 +27,8 @@ const Home = (props) => {
   };
 
   const sortStyle = {
-    backgroundColor: isSortView ? "gray" : "white",
+    backgroundColor: isSortView ? "black" : "white",
+    color: isSortView ? "white" : "black",
   };
 
   const handleAddToCart = (product) => {

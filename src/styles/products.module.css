@@ -1,38 +1,48 @@
-.mainDiv{
-
-}
 .prodDiv{
    display: flex;
    justify-content: space-between;
+   flex-direction: row;
    width: 70%;
    margin-left: 15%;
    margin-top:50px ;
    background-color: white;
+   height: 220px;
+   border: 1px solid black;
 }
-.title{
 
-}
 .pic{
    height: 150px;
-   width: 100px;
+   width: 150px;
    margin-top: 15px;
    margin-left: 10px;
 }
-.price{
 
-}
-.rating{
-
+.picDiv{
+   height: 150px;
+   /* width:  250px; */
+   width: 20%;
 }
 .info{
    margin-left: 100px;
+   height: 75%;
+   margin-top: 5px;
+}
+.iconDiv{
+   height: 10%;
+   display: flex;
+   justify-content: flex-end;
 }
 .innDiv{
    display: flex;
    flex-direction: column;
    justify-content: space-between;
    margin-left: 40px;
-   width : 270px;
+   /* width : 200px; */
+   width: 20%;
+}
+.endDiv{
+   width: 60%;
+   margin-right: 15px;
 }
 .sort{
     width:120px;
@@ -63,6 +73,7 @@
    width: 5px;
   height: 5px;
 }
+
 .sortRemove img.sortRemoveIcon {
    width: 20px;
    height: 20px;
@@ -72,15 +83,19 @@
  .price {
    font-weight: normal;
  }
+ .price{
+   margin-top: -80px;
+   font-size: 0.8rem;
+}
 .editPic{
    width: 20px;
    height: 20px;
-   margin-left: 450px;
+   margin-right: 20px;
 }
 .delPic{
    width: 20px;
    height: 20px;
-   margin-left: 50px;
+   margin-right: 20px;
 }
 .delPic,
 .editPic,
@@ -93,18 +108,22 @@
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   background-color: red;
+   background-color: black;
    width: 400px;
    height: 400px;
    display: flex;
    flex-direction: column;
-   justify-content: center;
-   align-items: center;
+   justify-content: flex-start;
+   /* align-items: center; */
+   color: white;
  }
 
  .editPopup h2 {
    margin-bottom: 20px;
  }
+
+ .editTitle
+ .ed
  
  .editPopup input,
  .editPopup textarea {

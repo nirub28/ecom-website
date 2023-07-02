@@ -77,7 +77,8 @@ const Products = (props) => {
   };
 
   const sortStyle = {
-    backgroundColor: isSortView ? "gray" : "white",
+    backgroundColor: isSortView ? "black" : "white",
+    color: isSortView ? "white" : "black",
   };
 
   return (
@@ -112,22 +113,25 @@ const Products = (props) => {
       {isSortView
         ? sortedData.map((product, index) => (
           <div className={styles.prodDiv} key={index}>
+          <div className={styles.picDiv}>
           <img
             className={styles.pic}
             src={product.Img}
             alt={product.Title}
           />
+          </div>
           <div className={styles.innDiv}>
             <h2 className={styles.title}>{product.Title}</h2>
             <p className={styles.price}>
-              <b>RS:</b> {product.Price}
+              <b>Rs:</b> {product.Price}
             </p>
             <p className={styles.rating}>
-              <b>Rating:</b> {product.Rating}
+              <b>Rating:</b> {product.Rating}/5
             </p>
           </div>
           <div className={styles.endDiv}>
-            <p className={styles.info}>{product.Info}</p>
+            <div className={styles.info}>{product.Info}</div>
+            <div className={styles.iconDiv}>
             <span>
               <img
                 className={styles.editPic}
@@ -144,27 +148,32 @@ const Products = (props) => {
                 onClick={() => handleDeleteProd(product)}
               />
             </span>
+            </div>
           </div>
         </div>
           ))
         : products.map((product, index) => (
             <div className={styles.prodDiv} key={index}>
+              <div className={styles.picDiv}>
               <img
                 className={styles.pic}
                 src={product.Img}
                 alt={product.Title}
               />
+              </div>
               <div className={styles.innDiv}>
                 <h2 className={styles.title}>{product.Title}</h2>
                 <p className={styles.price}>
-                  <b>RS:</b> {product.Price}
+                  <b>Rs:</b> {product.Price}
                 </p>
                 <p className={styles.rating}>
-                  <b>Rating:</b> {product.Rating}
+                  <b>Rating:</b> {product.Rating}/5
                 </p>
               </div>
               <div className={styles.endDiv}>
-                <p className={styles.info}>{product.Info}</p>
+                
+                <div className={styles.info}>{product.Info}</div>
+                <div className={styles.iconDiv}>
                 <span>
                   <img
                     className={styles.editPic}
@@ -182,12 +191,13 @@ const Products = (props) => {
                   />
                 </span>
               </div>
+              </div>
             </div>
           ))}
       { isUpdate ? (
         <div className={styles.editPopup}>
           <h2>Edit Product</h2>
-          <div>
+          <div className={styles.editTitle}>
             <label htmlFor="title">Title:</label>
             <input
               type="text"
@@ -198,7 +208,7 @@ const Products = (props) => {
               }
             />
           </div>
-          <div>
+          <div className={styles.editPrice}>
             <label htmlFor="price">Price:</label>
             <input
               type="text"
@@ -209,18 +219,20 @@ const Products = (props) => {
               }
             />
           </div>
-          <div>
+          <div className={styles.editRating}>
             <label htmlFor="rating">Rating:</label>
             <input
               type="text"
               id="rating"
+              min="0"
+              max="5"
               value={editedProduct.Rating}
               onChange={(e) =>
                 setEditedProduct({ ...editedProduct, Rating: e.target.value })
               }
             />
           </div>
-          <div>
+          <div className={styles.editInfo}>
             <label htmlFor="info">Info:</label>
             <textarea
               id="info"
@@ -230,9 +242,9 @@ const Products = (props) => {
               }
             />
           </div>
-          <div>
-            <button onClick={() => handleSaveChanges()}>Save</button>
-            <button onClick={() => handleCancelEdit()}>Cancel</button>
+          <div className={styles.editBtns}>
+            <button className={styles.editSaveBtn} onClick={() => handleSaveChanges()}>Save</button>
+            <button className={styles.editCancelBtn} onClick={() => handleCancelEdit()}>Cancel</button>
           </div>
         </div>
       ) : ''}
