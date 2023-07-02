@@ -4,6 +4,9 @@ import React, { useEffect } from "react";
 import { addProducts } from "../actions";
 import { connect } from "react-redux";
 import {Home , Navbar , Cart , Products , addProduct as Add} from '../pages';
+import { v4 as uuidv4 } from "uuid";
+
+
 
 
 
@@ -15,7 +18,12 @@ const App = ({ dispatch , products }) => {
       try {
         const response = await fetch("https://my-json-server.typicode.com/");
         const data = await response.json();
-        dispatch(addProducts(data));
+
+        const updatedProducts = data.map(product => ({
+          ...product,
+          unId: uuidv4()
+        }));
+        dispatch(addProducts(updatedProducts));
       } catch (error) {
         // Handle error
       }
@@ -26,7 +34,7 @@ const App = ({ dispatch , products }) => {
 
   const { list = [], cart = [] } = products|| {};
 
-  console.log('The list rnedering', products)
+  console.log('The list rnedering', list)
 
   return (
     <div className="App">

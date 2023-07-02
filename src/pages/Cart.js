@@ -41,7 +41,7 @@ const Cart = (props) => {
                 <div className={styles.innDiv}>
                   <h2 className={styles.title}>{product.Title}</h2>
                   <p className={styles.price}>
-                    <b>RS:</b> {product.Price}
+                    <b>₹:</b> {product.Price}
                   </p>
                   <button className={styles.removeProdBtn} type="submit" onClick={() => handleRemoveProd(product)}>
                     Remove
@@ -50,7 +50,7 @@ const Cart = (props) => {
               </div>
             );
           })}
-         <p className={styles.totalPrice}>Total Amount(Rs) = {totalPrice};</p>
+         <p className={styles.totalPrice}>Total Amount(₹) = {totalPrice};</p>
         </React.Fragment>
       )}
     </div>

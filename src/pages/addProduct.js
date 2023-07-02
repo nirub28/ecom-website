@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from '../styles/add.module.css';
 import { addProductToList } from '../actions';
 import { connect } from 'react-redux';
+import { v4 as uuidv4 } from "uuid";
+
 
 const AddProduct = (props) => {
   const [title, setTitle] = useState('');
@@ -19,6 +21,7 @@ const AddProduct = (props) => {
       Rating: rating,
       Price: price,
       Img: imageUrl,
+      Id:uuidv4(), 
     };
 
     props.dispatch(addProductToList(product));
@@ -56,7 +59,7 @@ const AddProduct = (props) => {
           <p>Rating</p>
           <input
             className={styles.inputBox}
-            type="number"
+            type="text"
             min="0"
             max="5"
             value={rating}

@@ -65,25 +65,28 @@ const Home = (props) => {
       {isSortView
         ? sortedData.map((product, index) => (
           <div className={styles.prodDiv} key={index}>
+           <div className={styles.picDiv}>
           <img
             className={styles.pic}
             src={product.Img}
             alt={product.Title}
           />
+          </div>
           <div className={styles.innDiv}>
             <h2 className={styles.title}>{product.Title}</h2>
             <p className={styles.price}>
-              <b>RS:</b> {product.Price}
+              <b>₹:</b> {product.Price}
             </p>
             <p className={styles.rating}>
-              <b>Rating:</b> {product.Rating}
+              <b>Rating:</b>  <span className={styles.ratingValue}>{product.Rating}</span><img className={styles.starPic} src="https://cdn-icons-png.flaticon.com/512/2107/2107957.png" alt="star-pic"></img>/5
             </p>
           </div>
           <div className={styles.endDiv}>
             <p className={styles.info}>{product.Info}</p>
+            <div className={styles.iconDiv}>
             {isInCart(product) ? (
               <a href="/cart">
-                <button>Go To Cart</button>
+                <button className={styles.goToCart}>Go To Cart</button>
               </a>
             ) : (
               <button
@@ -94,30 +97,34 @@ const Home = (props) => {
                 Add to Cart
               </button>
             )}
+            </div>
           </div>
         </div>
           ))
         : products.map((product, index) => (
             <div className={styles.prodDiv} key={index}>
+              <div className={styles.picDiv}>
               <img
                 className={styles.pic}
                 src={product.Img}
                 alt={product.Title}
               />
+              </div>
               <div className={styles.innDiv}>
                 <h2 className={styles.title}>{product.Title}</h2>
                 <p className={styles.price}>
-                  <b>RS:</b> {product.Price}
+                  <b>₹:</b> {product.Price}
                 </p>
                 <p className={styles.rating}>
-                  <b>Rating:</b> {product.Rating}
+                  <b>Rating:</b>  <span className={styles.ratingValue}>{product.Rating}</span><img className={styles.starPic} src="https://cdn-icons-png.flaticon.com/512/2107/2107957.png" alt="star-pic"></img>/5
                 </p>
               </div>
               <div className={styles.endDiv}>
                 <p className={styles.info}>{product.Info}</p>
+                <div className={styles.iconDiv}>
                 {isInCart(product) ? (
                   <a href="/cart">
-                    <button>Go To Cart</button>
+                    <button className={styles.goToCart} >Go to cart</button>
                   </a>
                 ) : (
                   <button
@@ -128,6 +135,7 @@ const Home = (props) => {
                     Add to Cart
                   </button>
                 )}
+                </div>
               </div>
             </div>
           ))}

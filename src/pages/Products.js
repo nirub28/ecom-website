@@ -6,13 +6,13 @@ import { deleteProduct , updateProduct } from "../actions";
 const Products = (props) => {
   const { products } = props;
 
+
   const sortedData = [...products].sort((a, b) => a.Price - b.Price); // sort data in ascending orer
   const [isSortView, setisSortView] = useState(false);
   const [ isUpdate , setUpdate] = useState(false);
   const [editedProduct, setEditedProduct] = useState(null);
   const [deleteProduct, setDeleteProduct] = useState(false);
 
-  console.log("length of data is ", products.length);
 
   const setNotSortView = () => {
     setisSortView(false);
@@ -50,13 +50,13 @@ const Products = (props) => {
   const handleSaveChanges = () => {
     // Find the index of the edited product in the products array
     const editedProductIndex = products.findIndex(
-      (product) => product.Id === editedProduct.Id
+      (product) => product.unId === editedProduct.unId
     );
 
     if (editedProductIndex !== -1) {
       // Create a copy of the products array
       const updatedData = [...products];
-
+     
       // Update the edited product in the copy
       updatedData[editedProductIndex] = editedProduct;
 
@@ -79,6 +79,7 @@ const Products = (props) => {
   const sortStyle = {
     backgroundColor: isSortView ? "black" : "white",
     color: isSortView ? "white" : "black",
+    
   };
 
   return (
@@ -123,10 +124,10 @@ const Products = (props) => {
           <div className={styles.innDiv}>
             <h2 className={styles.title}>{product.Title}</h2>
             <p className={styles.price}>
-              <b>Rs:</b> {product.Price}
+              <b>₹:</b> {product.Price}
             </p>
             <p className={styles.rating}>
-              <b>Rating:</b> {product.Rating}/5
+              <b>Rating:</b>  <span className={styles.ratingValue}>{product.Rating}</span><img className={styles.starPic} src="https://cdn-icons-png.flaticon.com/512/2107/2107957.png" alt="star-pic"></img>/5
             </p>
           </div>
           <div className={styles.endDiv}>
@@ -164,10 +165,10 @@ const Products = (props) => {
               <div className={styles.innDiv}>
                 <h2 className={styles.title}>{product.Title}</h2>
                 <p className={styles.price}>
-                  <b>Rs:</b> {product.Price}
+                  <b>₹:</b> {product.Price}
                 </p>
                 <p className={styles.rating}>
-                  <b>Rating:</b> {product.Rating}/5
+                  <b>Rating:</b> <span className={styles.ratingValue}>{product.Rating}</span><img className={styles.starPic} src="https://cdn-icons-png.flaticon.com/512/2107/2107957.png" alt="star-pic"></img>/5
                 </p>
               </div>
               <div className={styles.endDiv}>
@@ -196,9 +197,9 @@ const Products = (props) => {
           ))}
       { isUpdate ? (
         <div className={styles.editPopup}>
-          <h2>Edit Product</h2>
+          <h3>Edit Product</h3>
           <div className={styles.editTitle}>
-            <label htmlFor="title">Title:</label>
+            <label className={styles.lableTitle} htmlFor="title"><b>Title     :</b></label>
             <input
               type="text"
               id="title"
@@ -209,7 +210,7 @@ const Products = (props) => {
             />
           </div>
           <div className={styles.editPrice}>
-            <label htmlFor="price">Price:</label>
+            <label className={styles.lableTitle}  htmlFor="price"><b>Price:</b></label>
             <input
               type="text"
               id="price"
@@ -220,7 +221,7 @@ const Products = (props) => {
             />
           </div>
           <div className={styles.editRating}>
-            <label htmlFor="rating">Rating:</label>
+            <label className={styles.lableTitle}  htmlFor="rating"><b>Rating:</b></label>
             <input
               type="text"
               id="rating"
@@ -232,8 +233,9 @@ const Products = (props) => {
               }
             />
           </div>
-          <div className={styles.editInfo}>
-            <label htmlFor="info">Info:</label>
+            <div className={styles.editInfo}>
+            <label className={styles.lableTitle}  htmlFor="info"><b>Info  :</b></label>
+            
             <textarea
               id="info"
               value={editedProduct.Info}
