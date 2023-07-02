@@ -23,10 +23,10 @@ const Cart = (props) => {
   return (
     <div>
       {isCartEmpty() ? (
-        <div>
-          <img src='https://cdn-icons-png.flaticon.com/512/9841/9841570.png' alt='empty-cart'/>
-          <h3>Your cart is empty!</h3>
-        <button><a href='/'>Shop now </a></button>
+        <div className={styles.emptyCartDiv}>
+          <img className={styles.emptyCartImg} src='https://cdn-icons-png.flaticon.com/512/10967/10967115.png' alt='empty-cart'/>
+          <h3 className={styles.emptyCartInfo} >Your cart is empty!</h3>
+        <button className={styles.emptyCartBtn} ><a href='/'>Shop now </a></button>
         </div>
       ) : (
         <React.Fragment>
@@ -43,14 +43,14 @@ const Cart = (props) => {
                   <p className={styles.price}>
                     <b>RS:</b> {product.Price}
                   </p>
-                  <button type="submit" onClick={() => handleRemoveProd(product)}>
+                  <button className={styles.removeProdBtn} type="submit" onClick={() => handleRemoveProd(product)}>
                     Remove
                   </button>
                 </div>
               </div>
             );
           })}
-          Total Amount(Rs) = {totalPrice};
+         <p className={styles.totalPrice}>Total Amount(Rs) = {totalPrice};</p>
         </React.Fragment>
       )}
     </div>
