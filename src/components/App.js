@@ -10,6 +10,11 @@ import {MyList} from '../data';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const Page404 = () => {
+  return <h1>404</h1>;
+};
+
+
 const App = ({ dispatch }) => {
   useEffect(() => {
     const fetchProducts = async () => {
@@ -30,6 +35,7 @@ const App = ({ dispatch }) => {
 
     fetchProducts();
   }, [dispatch]);
+
 
 
   return (
@@ -54,7 +60,7 @@ const App = ({ dispatch }) => {
           element={<Home dispatch={dispatch} />}
         />
         <Route
-          exact path="/Products"
+          exact path="/products"
           element={<Products />}
         />
         <Route
@@ -62,6 +68,8 @@ const App = ({ dispatch }) => {
           element={<Cart dispatch={dispatch} />}
         />
         <Route exact path="/add" element={<Add />} />
+
+        <Route  path="*" element={<Page404 />} />
       </Routes>
     </div>
   );

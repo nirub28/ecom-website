@@ -14,7 +14,7 @@ const Navbar = (props) => {
           </a>
         </span>
         <span className={styles.prodList}>
-          <a className={styles.prodLink} href="/products">
+          <a className={styles.prodLink} href="/Products">
             Products
           </a>
         </span>
