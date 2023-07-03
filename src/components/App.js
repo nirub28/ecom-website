@@ -2,8 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import { addProducts } from "../actions";
 import { connect } from "react-redux";
-import { Home, Navbar, Cart, addProduct as Add } from "../pages";
-import Products from '../pages/Products'
+import { Home, Navbar, Cart,Products, addProduct as Add } from "../pages";
 import { v4 as uuidv4 } from "uuid";
 import {MyList} from '../data';
 
@@ -11,7 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Page404 = () => {
-  return <h1>404</h1>;
+  return <div> <h1>404 Error </h1> <h4>Please check if URL entered is correct</h4></div>
 };
 
 
@@ -41,7 +40,7 @@ const App = ({ dispatch }) => {
   return (
     <div className="App">
       <ToastContainer // for notifications
-        position="top-left"
+        position="top-center"
         autoClose={1000}
         hideProgressBar={false}
         newestOnTop
