@@ -44,9 +44,8 @@ export const data = [
   },
 ];
 
-// Bike  -> https://www.tuvie.com/wp-content/uploads/heavyweight-1000cc-motorbike-concept-proposal-for-royal-enfield1.jpg
-//       ->
-//       ->
-//       ->
-//       ->
-//       ->
+// Bike   -> https://www.tuvie.com/wp-content/uploads/heavyweight-1000cc-motorbike-concept-proposal-for-royal-enfield1.jpg
+// Iphone -> https://www.apple.com/newsroom/images/product/iphone/geo/Apple_iPhone-13-Pro_iPhone-13-Pro-Max_GEO_09142021_inline.jpg.large_2x.jpg
+// Camera -> https://fujifilm-x.com/wp-content/uploads/2017/08/1_thum_gfx_50s.jpg
+// Laptop -> https://www.reliancedigital.in/medias/HP-6N1V9PA-ACJ-Laptop-492850570-i-1-1200Wx1200H?context=bWFzdGVyfGltYWdlc3w5MjQ4MHxpbWFnZS9qcGVnfGltYWdlcy9oNDgvaDllLzk4NjQyNzgwMTYwMzAuanBnfGQ2MDdjZTExMDRhMjc1ZTI0N2ZlNDFlNWM5OWViNjBlODhiNjU2MzlmNzU1NmQzZDk5NGY1OGVmNDczYmFkZmE
+// Headset-> https://in.thermaltake.com/media/catalog/product/cache/6af153fd0a0c509bdfcdfb60a394dd9c/r/i/riingprorgb_01.jpg

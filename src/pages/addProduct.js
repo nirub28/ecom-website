@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import styles from '../styles/add.module.css';
-import { addProductToList } from '../actions';
-import { connect } from 'react-redux';
+import React, { useState } from "react";
+import styles from "../styles/add.module.css";
+import { addProductToList } from "../actions";
+import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
+import { toast } from "react-toastify"; // to add notifications
+import "react-toastify/dist/ReactToastify.css";
 
 const AddProduct = (props) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [rating, setRating] = useState('');
-  const [price, setPrice] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [title, setTitle] = useState("");   // to store new product
+  const [description, setDescription] = useState("");
+  const [rating, setRating] = useState("");
+  const [price, setPrice] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -21,17 +23,18 @@ const AddProduct = (props) => {
       Rating: rating,
       Price: price,
       Img: imageUrl,
-      Id:uuidv4(), 
+      Id: uuidv4(),
     };
 
     props.dispatch(addProductToList(product));
+    toast.success("Product Added Successfully");
 
     // Reset input values after adding the product
-    setTitle('');
-    setDescription('');
-    setRating('');
-    setPrice('');
-    setImageUrl('');
+    setTitle("");
+    setDescription("");
+    setRating("");
+    setPrice("");
+    setImageUrl("");
   };
 
   return (
@@ -92,72 +95,3 @@ const AddProduct = (props) => {
 
 export default connect()(AddProduct);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import styles from '../styles/add.module.css';
-// import {addProductToList} from '../actions';
-// import { connect } from "react-redux";
-
-
-// const addProduct = (props) => {
-
-//   // const {dispatch}=  props;
-
-//   const handleAddProduct = (e) => {
-//     e.preventDefault();
-//     const product = {
-//       Title: e.target[0].value,
-//       Info: e.target[1].value,
-//       Rating: e.target[2].value,
-//       Price: e.target[3].value,
-//       Img: e.target[4].value,
-//     };
-//     // console.log('Form values:', product);
-
-//     props.dispatch(addProductToList(product));
-//     console.log('Form values:', product);
-//   }
-
-
-//     return (
-//       <div >
-//         <div>
-            
-//             <form className={styles.form} onSubmit={handleAddProduct}>
-//             <span className={styles.name}><b>Add a Product</b></span>
-//                 <p>Name </p>
-//                 <input className={styles.inputBox}  type="text"></input>
-//                 <p>Description</p>
-//                 <input  className={styles.inputBox} type="text"></input>
-//                 <p>Rating</p>
-//                 <input className={styles.inputBox} type="number"></input>
-//                 <p>Price</p>
-//                 <input className={styles.inputBox} type="number"></input>
-//                 <p>Image URL</p>
-//                 <input className={styles.inputBox} type="text"></input>
-//                   <br/>
-//                 <button className={styles.add} type="submit">Add</button>
-//             </form>
-//         </div>
-        
-//       </div>
-//     );
-//   }
-  
-  
-//   // export default addProduct;
-//   export default connect()(addProduct);

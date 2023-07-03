@@ -1,51 +1,60 @@
 import { Routes, Route } from "react-router-dom";
-// import { data as productsList } from "../data";
 import React, { useEffect } from "react";
 import { addProducts } from "../actions";
 import { connect } from "react-redux";
-import {Home , Navbar , Cart , Products , addProduct as Add} from '../pages';
+import { Home, Navbar, Cart, Products, addProduct as Add } from "../pages";
 import { v4 as uuidv4 } from "uuid";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-
-
-
-const App = ({ dispatch , products }) => {
-
-
+const App = ({ dispatch, products }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://my-json-server.typicode.com/");
+        const response = await fetch("https://my-json-server.typicode.com/"); //api call
         const data = await response.json();
 
-        const updatedProducts = data.map(product => ({
+        const updatedProducts = data.map((product) => ({
           ...product,
-          unId: uuidv4()
+          unId: uuidv4(),
         }));
         dispatch(addProducts(updatedProducts));
       } catch (error) {
-        // Handle error
+        //  error handle
       }
     };
 
     fetchProducts();
   }, [dispatch]);
 
-  const { list = [], cart = [] } = products|| {};
-
-  console.log('The list rnedering', list)
+  const { list = [], cart = [] } = products || {};
 
   return (
     <div className="App">
-      <Navbar  dispatch={dispatch} cart={cart} />
+      <ToastContainer // for notifications
+        position="top-left"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
+      <Navbar dispatch={dispatch} cart={cart} />
       <Routes>
         <Route
-          exact
-          path="/"
+          exact path="/"
           element={<Home products={list} cart={cart} dispatch={dispatch} />}
         />
-        <Route exact path="/products" element={<Products products={list} />} />
+        <Route 
+        exact path="/products" 
+        element={<Products products={list} />} 
+      />
         <Route
           exact
           path="/cart"

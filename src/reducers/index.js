@@ -10,8 +10,8 @@ import {
 } from "../actions";
 
 const initialProductStore = {
-  list: [],
-  cart: [],
+  list: [], // for products
+  cart: [], // for cart products
 };
 
 export function products(state = initialProductStore, action) {
@@ -50,8 +50,8 @@ export function products(state = initialProductStore, action) {
         };
       }
       return state;
-    
-      case ADD_PRODUCT_TO_LIST:
+
+    case ADD_PRODUCT_TO_LIST:
       return {
         ...state,
         list: [action.product, ...state.list],

@@ -7,127 +7,125 @@
    background-color: white;
 } */
 
-.prodDiv{
-   display: flex;
-   justify-content: space-between;
-   flex-direction: row;
-   width: 70%;
-   margin-left: 15%;
-   margin-top:50px ;
-   background-color: white;
-   height: 220px;
-   border: 1px solid black;
+.prodDiv {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 50px;
+  background-color: white;
+  height: 220px;
+  border: 1px solid black;
 }
 
-.picDiv{
-   width: 20%;
+.picDiv {
+  width: 20%;
 }
-.pic{
-   height: 190px;
-   width: 150px;
-   margin-top: 15px;
-   margin-left: 10px;
+.pic {
+  height: 190px;
+  width: 150px;
+  margin-top: 15px;
+  margin-left: 10px;
 }
-.innDiv{
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   margin-left: 40px;
-   width: 20%;
+.innDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 40px;
+  width: 20%;
 }
 
-.endDiv{
-   width: 60%;
-   margin-right: 15px;
+.endDiv {
+  width: 60%;
+  margin-right: 15px;
 }
-.info{
-   margin-left: 100px;
-   height: 70%;
-   margin-top: 10px;
+.info {
+  margin-left: 100px;
+  height: 70%;
+  margin-top: 10px;
 }
-.iconDiv{
-   height: 10%;
-   display: flex;
-   justify-content: flex-end;
-   flex-direction: row;
+.iconDiv {
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
 }
-.sort{
-    width:120px;
-    height:30px;
-    border-radius: 20px;
-    background-color: white;
-    transition: 0.5s;
-    text-align: center;
-    padding-top: 10px;
-    margin-left: 74%;
-    margin-top: 20px;
-
+.sort {
+  width: 120px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: white;
+  transition: 0.5s;
+  text-align: center;
+  padding-top: 10px;
+  margin-left: 74%;
+  margin-top: 20px;
 }
-.sort:hover{
-   cursor: pointer;
+.sort:hover {
+  cursor: pointer;
 }
-.sortRemove:hover{
-   cursor: pointer;
+.sortRemove:hover {
+  cursor: pointer;
 }
-.sortDiv{
-   display: flex;
-   flex-direction: column;
-   justify-content: left;
+.sortDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
-.sortRemove{
-   margin-left: 1060px;
-   margin-top: -30px;
-   width: 5px;
+.sortRemove {
+  margin-left: 1060px;
+  margin-top: -30px;
+  width: 5px;
   height: 5px;
 }
 .sortRemove img.sortRemoveIcon {
-   width: 20px;
-   height: 20px;
- }
- .info,
- .rating,
- .price {
-   font-weight: normal;
- }
- .endDiv{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
- }
- .ratingValue{
-   color:green
+  width: 20px;
+  height: 20px;
 }
-.starPic{
-   width: 12px;
-   height: 12px;
+.info,
+.rating,
+.price {
+  font-weight: normal;
 }
-.addToCart{
-   width: 100px;
-   height: 30px;
-   margin-left: 400px;
-   margin-top: -10px;
-   background-color: #0c6196;
-   color: white;
+.endDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
-.goToCart{
-   width: 100px;
-   height: 30px;
-   margin-left: 400px;
-   position: relative;
-   top: -10px;
-   background-color: green;
-   color: white;
+.ratingValue {
+  color: green;
 }
-.addToCart:hover{
-   cursor: pointer;
-   color: black;
+.starPic {
+  width: 12px;
+  height: 12px;
 }
-.goToCart:hover{
-   cursor: pointer;
-   color: black;
+.addToCart {
+  width: 100px;
+  height: 30px;
+  margin-left: 400px;
+  margin-top: -10px;
+  background-color: #0c6196;
+  color: white;
 }
-.price{
-   margin-top: -80px;
-   font-size: 0.8rem;
+.goToCart {
+  width: 100px;
+  height: 30px;
+  margin-left: 400px;
+  position: relative;
+  top: -10px;
+  background-color: green;
+  color: white;
+}
+.addToCart:hover {
+  cursor: pointer;
+  color: black;
+}
+.goToCart:hover {
+  cursor: pointer;
+  color: black;
+}
+.price {
+  margin-top: -80px;
+  font-size: 0.8rem;
 }

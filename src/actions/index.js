@@ -1,4 +1,3 @@
-
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
@@ -6,7 +5,7 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const ADD_PRODUCT_TO_LIST = "ADD_PRODUCT_TO_LIST";
 export const DELETE_PRODUCT_FROM_LIST = "DELETE_PRODUCT_FROM_LIST";
 
-
+// actions for update and delete products
 
 export function addProducts(products) {
   return {
@@ -22,9 +21,9 @@ export function deleteProduct(product) {
   };
 }
 
-export function addProductToList(product){
-  return{
-    type:ADD_PRODUCT_TO_LIST,
+export function addProductToList(product) {
+  return {
+    type: ADD_PRODUCT_TO_LIST,
     product,
   };
 }
@@ -43,11 +42,9 @@ export function removeFromCart(product) {
   };
 }
 
-
 export function updateProduct(product) {
   return {
     type: UPDATE_PRODUCT,
     product,
   };
 }
-

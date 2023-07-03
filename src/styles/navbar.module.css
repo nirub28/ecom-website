@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
 }
 .nav {
   width: 100%;
@@ -12,80 +12,80 @@ body {
   align-items: center;
   padding: 0;
   margin: 0;
-  }
-  
-  .profilePic {
-    height: 45px;
-    margin-right: 20px;
-    border-radius: 30px;
-  }
-  
-  .userContainer{
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .nameContainer{
-    color: white;
-  }
-.appName{
+}
+
+.profilePic {
+  height: 45px;
+  margin-right: 20px;
+  border-radius: 30px;
+}
+
+.userContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nameContainer {
+  color: white;
+}
+.appName {
   margin-left: 15px;
   font-style: italic;
   color: aqua;
 }
-.prodList{
+.prodList {
   margin-left: 20px;
 }
-.prodList:hover{
-   cursor: pointer;
+.prodList:hover {
+  cursor: pointer;
 }
-.addProd{
+.addProd {
   margin-left: 20px;
   position: relative;
 }
-.addProd:hover{
+.addProd:hover {
   cursor: pointer;
 }
-.addIcon{
+.addIcon {
   height: 20px;
   width: 20px;
   position: absolute;
   margin-left: 6px;
   margin-top: 2px;
 }
-.name{
+.name {
   margin-right: 10px;
   color: white;
-  font-weight:bold ;
+  font-weight: bold;
 }
-.prodLink{
+.prodLink {
   text-decoration: none;
   color: white;
 }
-.appLink{
+.appLink {
   text-decoration: none;
-  color:aqua;
+  color: aqua;
 }
-.cart{
+.cart {
   width: 35px;
   height: 40px;
   margin-left: 700px;
 }
 
-.cartIconContainer{
+.cartIconContainer {
   position: relative;
 }
 .cartCount {
   position: absolute;
   background-color: red;
-  border:1px solid white;
+  border: 1px solid white;
   color: white;
   padding: 4px 8px;
   border-radius: 50%;
   margin-top: -9px;
-  margin-left:-7px;
+  margin-left: -7px;
 }
-.cart:hover{
+.cart:hover {
   cursor: pointer;
 }

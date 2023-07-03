@@ -1,42 +1,41 @@
 import React, { useState } from "react";
 import styles from "../styles/products.module.css";
 import { connect } from "react-redux";
-import { deleteProduct , updateProduct } from "../actions";
+import { deleteProduct, updateProduct } from "../actions";
+
+import { toast } from "react-toastify"; // to add notifications
+import "react-toastify/dist/ReactToastify.css";
 
 const Products = (props) => {
   const { products } = props;
 
-
-  const sortedData = [...products].sort((a, b) => a.Price - b.Price); // sort data in ascending orer
+  const sortedData = [...products].sort((a, b) => a.Price - b.Price); // sort data in ascending order
   const [isSortView, setisSortView] = useState(false);
-  const [ isUpdate , setUpdate] = useState(false);
-  const [editedProduct, setEditedProduct] = useState(null);
+  const [isUpdate, setUpdate] = useState(false);
+  const [editedProduct, setEditedProduct] = useState(null);  // for product update
   const [deleteProduct, setDeleteProduct] = useState(false);
 
-
   const setNotSortView = () => {
-    setisSortView(false);
+    setisSortView(false);   // unsort view
   };
 
   const setSortView = () => {
-    setisSortView(true);
+    setisSortView(true);    // sort view
   };
 
   const handleEditProd = (product) => {
-    console.log("editing is updated of", product);
-    setEditedProduct(product);
+    setEditedProduct(product);    //when editing is clicked, then the product data is stored
     setUpdate(true);
   };
 
+  const cancelDelete = () => {
+    setDeleteProduct(false);       // when clicked on cancelling the product to stop from deleting
+  };
 
-
-  const cancelDelete = () =>{
-    setDeleteProduct(false);
-  }
-
-  const continueDelete = () => {
-    if (deleteProduct) {
+  const continueDelete = () => { 
+    if (deleteProduct) {           // when clicked confirm, it will proceed with delete
       props.deleteProduct(editedProduct);
+      toast.success("Product Deleted Successfully");
       setDeleteProduct(false);
     }
   };
@@ -46,9 +45,9 @@ const Products = (props) => {
     setDeleteProduct(true);
   };
 
-
-  const handleSaveChanges = () => {
-    // Find the index of the edited product in the products array
+  //To work on saved changes of a product
+  const handleSaveChanges = () => {            
+    // Find the Id of the edited product in the products array
     const editedProductIndex = products.findIndex(
       (product) => product.unId === editedProduct.unId
     );
@@ -56,13 +55,13 @@ const Products = (props) => {
     if (editedProductIndex !== -1) {
       // Create a copy of the products array
       const updatedData = [...products];
-     
+
       // Update the edited product in the copy
       updatedData[editedProductIndex] = editedProduct;
 
       // Dispatch the updateProduct action with the updated product
-         console.log('edited product is :', editedProduct);
-         props.updateProduct(editedProduct); 
+      props.updateProduct(editedProduct);
+      toast.success("Product Updated");
     }
 
     // Reset the edit state and close the edit popup
@@ -79,7 +78,6 @@ const Products = (props) => {
   const sortStyle = {
     backgroundColor: isSortView ? "black" : "white",
     color: isSortView ? "white" : "black",
-    
   };
 
   return (
@@ -105,62 +103,39 @@ const Products = (props) => {
           ""
         )}
       </div>{" "}
-      {deleteProduct ? <div className={styles.deletePopup}> <h3>Delete Product?</h3>
-       <div className={styles.actionDiv}>
-        <button className={styles.actionCancel} onClick={() => cancelDelete()} type="submit">Cancel</button>
-        <button className={styles.actionDel} onClick={() => continueDelete()} type="submit">Delete</button>
+      {deleteProduct ? (
+        <div className={styles.deletePopup}>
+          {" "}
+          <h3>Delete Product?</h3>
+          <div className={styles.actionDiv}>
+            <button
+              className={styles.actionCancel}
+              onClick={() => cancelDelete()}
+              type="submit"
+            >
+              Cancel
+            </button>
+            <button
+              className={styles.actionDel}
+              onClick={() => continueDelete()}
+              type="submit"
+            >
+              Delete
+            </button>
+          </div>
         </div>
-      </div> :''}
+      ) : (
+        ""
+      )}
       {isSortView
         ? sortedData.map((product, index) => (
-          <div className={styles.prodDiv} key={index}>
-          <div className={styles.picDiv}>
-          <img
-            className={styles.pic}
-            src={product.Img}
-            alt={product.Title}
-          />
-          </div>
-          <div className={styles.innDiv}>
-            <h2 className={styles.title}>{product.Title}</h2>
-            <p className={styles.price}>
-              <b>₹:</b> {product.Price}
-            </p>
-            <p className={styles.rating}>
-              <b>Rating:</b>  <span className={styles.ratingValue}>{product.Rating}</span><img className={styles.starPic} src="https://cdn-icons-png.flaticon.com/512/2107/2107957.png" alt="star-pic"></img>/5
-            </p>
-          </div>
-          <div className={styles.endDiv}>
-            <div className={styles.info}>{product.Info}</div>
-            <div className={styles.iconDiv}>
-            <span>
-              <img
-                className={styles.editPic}
-                src="https://cdn-icons-png.flaticon.com/512/505/505159.png"
-                alt="edit-icon"
-                onClick={() => handleEditProd(product)}
-              />
-            </span>{" "}
-            <span>
-              <img
-                className={styles.delPic}
-                src="https://cdn-icons-png.flaticon.com/512/1632/1632602.png"
-                alt="delete-icon"
-                onClick={() => handleDeleteProd(product)}
-              />
-            </span>
-            </div>
-          </div>
-        </div>
-          ))
-        : products.map((product, index) => (
             <div className={styles.prodDiv} key={index}>
               <div className={styles.picDiv}>
-              <img
-                className={styles.pic}
-                src={product.Img}
-                alt={product.Title}
-              />
+                <img
+                  className={styles.pic}
+                  src={product.Img}
+                  alt={product.Title}
+                />
               </div>
               <div className={styles.innDiv}>
                 <h2 className={styles.title}>{product.Title}</h2>
@@ -168,38 +143,94 @@ const Products = (props) => {
                   <b>₹:</b> {product.Price}
                 </p>
                 <p className={styles.rating}>
-                  <b>Rating:</b> <span className={styles.ratingValue}>{product.Rating}</span><img className={styles.starPic} src="https://cdn-icons-png.flaticon.com/512/2107/2107957.png" alt="star-pic"></img>/5
+                  <b>Rating:</b>{" "}
+                  <span className={styles.ratingValue}>{product.Rating}</span>
+                  <img
+                    className={styles.starPic}
+                    src="https://cdn-icons-png.flaticon.com/512/2107/2107957.png"
+                    alt="star-pic"
+                  ></img>
+                  /5
                 </p>
               </div>
               <div className={styles.endDiv}>
-                
                 <div className={styles.info}>{product.Info}</div>
                 <div className={styles.iconDiv}>
-                <span>
-                  <img
-                    className={styles.editPic}
-                    src="https://cdn-icons-png.flaticon.com/512/505/505159.png"
-                    alt="edit-icon"
-                    onClick={() => handleEditProd(product)}
-                  />
-                </span>{" "}
-                <span>
-                  <img
-                    className={styles.delPic}
-                    src="https://cdn-icons-png.flaticon.com/512/1632/1632602.png"
-                    alt="delete-icon"
-                    onClick={() => handleDeleteProd(product)}
-                  />
-                </span>
+                  <span>
+                    <img
+                      className={styles.editPic}
+                      src="https://cdn-icons-png.flaticon.com/512/505/505159.png"
+                      alt="edit-icon"
+                      onClick={() => handleEditProd(product)}
+                    />
+                  </span>{" "}
+                  <span>
+                    <img
+                      className={styles.delPic}
+                      src="https://cdn-icons-png.flaticon.com/512/1632/1632602.png"
+                      alt="delete-icon"
+                      onClick={() => handleDeleteProd(product)}
+                    />
+                  </span>
+                </div>
               </div>
+            </div>
+          ))
+        : products.map((product, index) => (
+            <div className={styles.prodDiv} key={index}>
+              <div className={styles.picDiv}>
+                <img
+                  className={styles.pic}
+                  src={product.Img}
+                  alt={product.Title}
+                />
+              </div>
+              <div className={styles.innDiv}>
+                <h2 className={styles.title}>{product.Title}</h2>
+                <p className={styles.price}>
+                  <b>₹:</b> {product.Price}
+                </p>
+                <p className={styles.rating}>
+                  <b>Rating:</b>{" "}
+                  <span className={styles.ratingValue}>{product.Rating}</span>
+                  <img
+                    className={styles.starPic}
+                    src="https://cdn-icons-png.flaticon.com/512/2107/2107957.png"
+                    alt="star-pic"
+                  ></img>
+                  /5
+                </p>
+              </div>
+              <div className={styles.endDiv}>
+                <div className={styles.info}>{product.Info}</div>
+                <div className={styles.iconDiv}>
+                  <span>
+                    <img
+                      className={styles.editPic}
+                      src="https://cdn-icons-png.flaticon.com/512/505/505159.png"
+                      alt="edit-icon"
+                      onClick={() => handleEditProd(product)}
+                    />
+                  </span>{" "}
+                  <span>
+                    <img
+                      className={styles.delPic}
+                      src="https://cdn-icons-png.flaticon.com/512/1632/1632602.png"
+                      alt="delete-icon"
+                      onClick={() => handleDeleteProd(product)}
+                    />
+                  </span>
+                </div>
               </div>
             </div>
           ))}
-      { isUpdate ? (
+      {isUpdate ? (
         <div className={styles.editPopup}>
           <h3>Edit Product</h3>
           <div className={styles.editTitle}>
-            <label className={styles.lableTitle} htmlFor="title"><b>Title     :</b></label>
+            <label className={styles.lableTitle} htmlFor="title">
+              <b>Title :</b>
+            </label>
             <input
               type="text"
               id="title"
@@ -210,7 +241,9 @@ const Products = (props) => {
             />
           </div>
           <div className={styles.editPrice}>
-            <label className={styles.lableTitle}  htmlFor="price"><b>Price:</b></label>
+            <label className={styles.lableTitle} htmlFor="price">
+              <b>Price:</b>
+            </label>
             <input
               type="text"
               id="price"
@@ -221,7 +254,9 @@ const Products = (props) => {
             />
           </div>
           <div className={styles.editRating}>
-            <label className={styles.lableTitle}  htmlFor="rating"><b>Rating:</b></label>
+            <label className={styles.lableTitle} htmlFor="rating">
+              <b>Rating:</b>
+            </label>
             <input
               type="text"
               id="rating"
@@ -233,9 +268,11 @@ const Products = (props) => {
               }
             />
           </div>
-            <div className={styles.editInfo}>
-            <label className={styles.lableTitle}  htmlFor="info"><b>Info  :</b></label>
-            
+          <div className={styles.editInfo}>
+            <label className={styles.lableTitle} htmlFor="info">
+              <b>Info :</b>
+            </label>
+
             <textarea
               id="info"
               value={editedProduct.Info}
@@ -245,21 +282,32 @@ const Products = (props) => {
             />
           </div>
           <div className={styles.editBtns}>
-            <button className={styles.editSaveBtn} onClick={() => handleSaveChanges()}>Save</button>
-            <button className={styles.editCancelBtn} onClick={() => handleCancelEdit()}>Cancel</button>
+            <button
+              className={styles.editSaveBtn}
+              onClick={() => handleSaveChanges()}
+            >
+              Save
+            </button>
+            <button
+              className={styles.editCancelBtn}
+              onClick={() => handleCancelEdit()}
+            >
+              Cancel
+            </button>
           </div>
         </div>
-      ) : ''}
+      ) : (
+        ""
+      )}
     </div>
   );
 };
 
-// export default Products;
 
 const mapStateToProps = (state) => ({
   products: state.products.list,
 });
 
-// export default connect(mapStateToProps)(Products);
-export default connect(mapStateToProps, {deleteProduct , updateProduct })(Products);
-
+export default connect(mapStateToProps, { deleteProduct, updateProduct })(
+  Products
+);
