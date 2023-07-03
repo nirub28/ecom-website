@@ -54,7 +54,7 @@ const App = ({ dispatch }) => {
           element={<Home dispatch={dispatch} />}
         />
         <Route
-          exact path="/products"
+          exact path="/Products"
           element={<Products />}
         />
         <Route
