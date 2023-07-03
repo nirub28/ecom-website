@@ -1,4 +1,4 @@
-export const data = [
+export const MyList = [
   {
     Title: "Mobile",
     Price: "50000",

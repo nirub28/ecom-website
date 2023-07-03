@@ -3,11 +3,12 @@ import styles from "../styles/home.module.css";
 import { addToCart } from "../actions";
 import { connect } from "react-redux";     
 
-const Home = (props) => {
-  const { products, cart } = props;
+const Home = ({ products, dispatch }) => {
+  const { list, cart } = products;
+  
 
   // sort data in ascending order when clicked on Sort by price, will have that data in sortedData
-  const sortedData = [...products].sort((a, b) => a.Price - b.Price); 
+  const sortedData = [...list].sort((a, b) => a.Price - b.Price); 
   const [isSortView, setisSortView] = useState(false);
 
   const setNotSortView = () => {
@@ -34,12 +35,12 @@ const Home = (props) => {
   };
 
   const handleAddToCart = (product) => {
-    props.dispatch(addToCart(product));  // adding product to cart
+    dispatch(addToCart(product));  // adding product to cart
   };
 
   useEffect(() => {
     // console.log("rendering", products);
-  }, [products]); // Empty dependency array to run the effect only once
+  }, [list]); // Empty dependency array to run the effect only once
 
   return (
     <div className={styles.mainDiv}>
@@ -110,7 +111,7 @@ const Home = (props) => {
               </div>
             </div>
           ))
-        : products.map((product, index) => (
+        : list.map((product, index) => (
             <div className={styles.prodDiv} key={index}>
               <div className={styles.picDiv}>
                 <img
@@ -160,8 +161,9 @@ const Home = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  products: state.products.list,             // to get store data
-  cart: state.products.cart,
+  products:state.products,
+  // list: state.products.list,             // to get store data
+  // cart: state.products.cart,
 });
 
 export default connect(mapStateToProps)(Home);

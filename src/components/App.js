@@ -4,31 +4,32 @@ import { addProducts } from "../actions";
 import { connect } from "react-redux";
 import { Home, Navbar, Cart, Products, addProduct as Add } from "../pages";
 import { v4 as uuidv4 } from "uuid";
+import {MyList} from '../data';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const App = ({ dispatch, products }) => {
+const App = ({ dispatch }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://my-json-server.typicode.com/"); //api call
-        const data = await response.json();
-
-        const updatedProducts = data.map((product) => ({
-          ...product,
-          unId: uuidv4(),
-        }));
-        dispatch(addProducts(updatedProducts));
+        const storedProducts = localStorage.getItem("products");
+        if (!storedProducts) {
+          const productsWithId = MyList.map((product) => ({
+            ...product,
+            unId: uuidv4(),
+          }));
+          dispatch(addProducts(productsWithId));
+          localStorage.setItem("products", JSON.stringify(productsWithId));
+        }
       } catch (error) {
-        //  error handle
+        // Handle error
       }
     };
 
     fetchProducts();
   }, [dispatch]);
 
-  const { list = [], cart = [] } = products || {};
 
   return (
     <div className="App">
@@ -45,20 +46,19 @@ const App = ({ dispatch, products }) => {
         theme="dark"
       />
 
-      <Navbar dispatch={dispatch} cart={cart} />
+      <Navbar dispatch={dispatch} />
       <Routes>
         <Route
           exact path="/"
-          element={<Home products={list} cart={cart} dispatch={dispatch} />}
+          element={<Home dispatch={dispatch} />}
         />
-        <Route 
-        exact path="/products" 
-        element={<Products products={list} />} 
-      />
         <Route
-          exact
-          path="/cart"
-          element={<Cart dispatch={dispatch} cart={cart} />}
+          exact path="/products"
+          element={<Products />}
+        />
+        <Route
+          exact path="/cart"
+          element={<Cart dispatch={dispatch} />}
         />
         <Route exact path="/add" element={<Add />} />
       </Routes>
