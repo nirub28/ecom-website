@@ -2,7 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import { addProducts } from "../actions";
 import { connect } from "react-redux";
-import { Home, Navbar, Cart, Products, addProduct as Add } from "../pages";
+import { Home, Navbar, Cart, addProduct as Add } from "../pages";
+import Products from '../pages/Products'
 import { v4 as uuidv4 } from "uuid";
 import {MyList} from '../data';
 
